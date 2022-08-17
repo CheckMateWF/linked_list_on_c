@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-//Узел (элемент) связанного списка
+//Node of linked list
 typedef struct userL {
     int uid;
     char name[20];
@@ -11,55 +11,55 @@ typedef struct userL {
 } userL;
 
 
-userL *head_user = NULL; //Указатель на начало списка (глобальная переменная)
+userL *head_user = NULL; //Head of linked list (Global var)
 
 
-//Добавление элемента в начало связанного списка
+//insert element to the beginning
 void insert_user(int uid, char *name){
     userL *new_user;
-    new_user = malloc(sizeof(userL)); //выделяется память под структуру в куче
-    strcpy(new_user->name, name); //копируется строка
+    new_user = malloc(sizeof(userL)); //Allocate memory for a structure on the heap
+    strcpy(new_user->name, name); //Copy name
     new_user->uid = uid;
-    new_user->next = head_user; //добавляем в начало, забираем указатель у head
-    head_user = new_user; // теперь head указывает на добавленного пользователя
+    new_user->next = head_user;
+    head_user = new_user; // Update head
 }
 
 
-//Удаление элемента из списка
+//Delete element
 void delete_user(int uid){
     userL *cur;
     userL *prev;
     prev = NULL;
-    cur = head_user; //Начинаем с начала
+    cur = head_user; //Start from beginnig
     while(cur != NULL){
         if (cur ->uid == uid){
             if (prev == NULL){
-                //Если найденный элемент в начале списка
-                head_user = cur->next; //Поменяли указатель head
+                //if element in beginning
+                head_user = cur->next; //update head
                 printf("User %s deleted\n", cur->name);
                 free(cur);
                 return;
             }
-            prev->next = cur->next; // Указатель предыдущего элемента поменяли
+            prev->next = cur->next; // Update prev element pointer
             printf("User %s deleted\n", cur->name);
             free(cur);
             return;
         }
-        prev = cur; //Сдвиг на следующий
+        prev = cur;
         cur = cur->next;
     }
     printf("User with uid: %d not found\n", uid);
 }
 
 
-//Печать списка
+//Print linked list
 void print_list(){
     if (head_user == NULL){
         printf("List is void \n");
         return;
     }
     userL *cur;
-    cur = head_user; // начинаем с головы
+    cur = head_user;
     while (cur!=NULL){
         printf("user id: %d, user name: %s \n", cur->uid, cur->name);
         cur = cur->next;
@@ -67,7 +67,7 @@ void print_list(){
 }
 
 
-//Найти пользователя по id и вернуть указатель на него
+//Find user
 userL *find_user(int uid){
     userL *cur = head_user;
     while(cur!= NULL){
@@ -80,7 +80,7 @@ userL *find_user(int uid){
 }
 
 
-//Вывод информации о пользователе
+//Print info about user
 void get_info(userL *user){
     if (user == NULL){
         printf("User is not found\n");
@@ -91,7 +91,7 @@ void get_info(userL *user){
 }
 
 
-//Вернуть размер связанного списка
+//Get size of linked list
 int size_of_list(){
     int count = 0;
     userL *cur = head_user;

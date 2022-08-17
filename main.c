@@ -3,41 +3,41 @@
 
 int main()
 {
-    //Вставка трех элементов
+    //Insert 3 users
     insert_user(1, "alex");
     insert_user(2, "anton");
     insert_user(3, "vlad");
     printf("--------\n");
 
-    //Печать списка
+    //Print linked list
     print_list();
     printf("--------\n");
 
-    //Найди пользователя по id
+    //Find user
     userL *p = find_user(3);
 
-    //Вывести информацию о пользователе
+    //Get info about user
     get_info(p);
     printf("--------\n");
 
-    //Удаление пользователя
+    //Delete users
     delete_user(3);
     delete_user(5);
     printf("--------\n");
 
-    //Печать списка
+    //Print linked list
     print_list();
     printf("--------\n");
 
-    //Добавить еще двух пользователей
+    //Insert 2 users
     insert_user(4, "dmitry");
     insert_user(5, "ivan");
 
-    //Печать списка
+    //Print linked list
     print_list();
     printf("--------\n");
 
-    //Количество элементов в списке
+    //Print size of linked list
     printf("There are %d users in users list\n", size_of_list());
 
     delete_user(1);
