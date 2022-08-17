@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1660738951 source:c:\d\programming\c\algo_c\l_list\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
